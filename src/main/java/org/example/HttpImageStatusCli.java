@@ -1,6 +1,4 @@
 package org.example;
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class HttpImageStatusCli {
@@ -19,7 +17,7 @@ public class HttpImageStatusCli {
         try{
             new HttpStatusImageDownloader().downloadStatusImage(code);
             System.out.println("download was successful");
-        } catch(FileNotFoundException e){
+        } catch(ImageNotFoundException e){
             System.out.printf("There is no image for HTTP status %d :(", code);
         }
     }

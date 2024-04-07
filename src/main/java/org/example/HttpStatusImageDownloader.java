@@ -1,6 +1,4 @@
 package org.example;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,7 +17,7 @@ public class HttpStatusImageDownloader {
         private static final String IMAGE_PATH = "src/main/resources/images/status_%d.jpg";
         private static final String DIR_PATH_FOR_IMAGE = "src/main/resources/images";
 
-        public void downloadStatusImage(int code) throws FileNotFoundException {
+        public void downloadStatusImage(int code) throws ImageNotFoundException {
             try{
                 String url = new HttpStatusChecker().getStatusImage(code);
                 Files.createDirectories(Paths.get(DIR_PATH_FOR_IMAGE));
@@ -36,7 +34,7 @@ public class HttpStatusImageDownloader {
                 HttpResponse<Path> httpResponse = httpClient.send(httpRequest,
                         HttpResponse.BodyHandlers.ofFile(Paths.get(String.format(IMAGE_PATH, code))));
                 if(httpResponse.statusCode()!=200){
-                    throw new FileNotFoundException();
+                    throw new ImageNotFoundException();
                 }
             } catch (URISyntaxException | IOException e){
                 e.printStackTrace();
