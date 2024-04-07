@@ -8,12 +8,11 @@ public class HttpStatusChecker {
 
     private static final String GENERAL_URL = "https://http.cat/%d.jpg";
     public String getStatusImage(int code) throws ImageNotFoundException {
-        String url = getSupposedUrl(code);
+        String SupposedUrl = getSupposedUrl(code);
         int responseCode = 0;
         try {
-            URI uri = new URI(url);
-            URL url1 = uri.toURL();
-            HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+            URL url = new URI(SupposedUrl).toURL();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
             responseCode = connection.getResponseCode();
@@ -23,7 +22,7 @@ public class HttpStatusChecker {
         if(responseCode != 0 && responseCode == 404) {
             throw new ImageNotFoundException();
         } else {
-            return  url;
+            return  SupposedUrl;
         }
 
     }
