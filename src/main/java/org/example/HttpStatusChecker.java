@@ -20,7 +20,7 @@ public class HttpStatusChecker {
             e.printStackTrace();
         }
         if(responseCode != 0 && responseCode == 404) {
-            throw new ImageNotFoundException();
+            throw new ImageNotFoundException("Image not found");
         } else {
             return  SupposedUrl;
         }

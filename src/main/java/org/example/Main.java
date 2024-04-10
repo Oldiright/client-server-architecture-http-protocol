@@ -2,11 +2,11 @@ package org.example;
 
 public class Main {
     public static void main(String[] args)  {
-       HttpStatusImageDownloader httpStatusImageDownloader = new HttpStatusImageDownloader();
+       HttpStatusChecker httpStatusChecker = new HttpStatusChecker();
         try {
-            httpStatusImageDownloader.downloadStatusImage(70000);
+            httpStatusChecker.getStatusImage(119);
         } catch (ImageNotFoundException e) {
-            System.out.println("invalid code");
+            e.printStackTrace();
         }
 
 
